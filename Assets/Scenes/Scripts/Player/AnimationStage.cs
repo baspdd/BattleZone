@@ -82,12 +82,6 @@ public class AnimationStage : MonoBehaviour
     }
 
 
-    private void Move()
-    {
-
-    }
-
-
     private void setStage(int stage)
     {
         animator.SetInteger("Stage", stage);
