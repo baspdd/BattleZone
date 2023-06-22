@@ -24,12 +24,13 @@ public class AnimationStage : MonoBehaviour
     void Update()
     {
         Move();
+        Jump();
     }
 
 
     private void Jump()
     {
-        var jumpCheck = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space);
+        var jumpCheck = Input.GetKeyDown(KeyCode.UpArrow);
         setStage(jumpCheck, 2);
         if (jumpCheck)
         {
