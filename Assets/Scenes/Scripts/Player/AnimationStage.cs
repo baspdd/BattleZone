@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,54 +24,72 @@ public class AnimationStage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Jump();
+
+        Movement();
+        stageAnimation();
     }
 
+    private void stageAnimation()
+    {
+        if (!isGrounded) setStage(2);
 
-    private void Jump()
+        else
+        {
+            setStage(0);
+            if (horizontalMove != 0 && isGrounded) setStage(1);
+        }
+    }
+
+    private void Movement()
     {
         var jumpCheck = Input.GetKeyDown(KeyCode.UpArrow);
-        setStage(jumpCheck, 2);
-        if (jumpCheck)
+        if (jumpCheck && isGrounded)
         {
             rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
+
+        horizontalMove = Input.GetAxisRaw("Horizontal");
+        if (horizontalMove != 0)
+        {
+            if ((transform.position.x <= -8f && horizontalMove < 0)
+           || (transform.position.x >= 8f && horizontalMove > 0)) return;
+
+            if (horizontalMove < 0) spriteRenderer.flipX = true;
+            else if (horizontalMove > 0) spriteRenderer.flipX = false;
+
+            Vector3 movement = new Vector3(horizontalMove, 0f, 0f) * speed;
+            transform.position += movement * Time.deltaTime;
+        }
     }
+
+
+    private bool isGrounded = false;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
+
 
     private void Move()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal");
-        if ((transform.position.x <= -8f && horizontalMove < 0)
-            || (transform.position.x >= 8f && horizontalMove > 0)) return;
 
-        if (horizontalMove < 0)
-        {
-            spriteRenderer.flipX = true;
-        } else if (horizontalMove > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-        Vector3 movement = new Vector3(horizontalMove, 0f, 0f) * speed;
-        transform.position += movement * Time.deltaTime;
-        setStage(horizontalMove != 0, 1);
     }
 
-    bool isFacingRight = false;
-    void flip()
-    {
-        if (isFacingRight && horizontalMove < 0 || !isFacingRight && horizontalMove > 0)
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 size = transform.localScale;
-            size.x = size.x * -1;
-            transform.localScale = size;
-        }
-    }
 
-    private void setStage(bool active, int stage)
+    private void setStage(int stage)
     {
-        stage = active ? stage : 0;
         animator.SetInteger("Stage", stage);
     }
 }

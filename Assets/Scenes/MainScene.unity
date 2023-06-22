@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 272588599}
   m_Layer: 0
   m_Name: idle1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -411,8 +411,8 @@ GameObject:
   - component: {fileID: 301535512}
   - component: {fileID: 301535511}
   m_Layer: 0
-  m_Name: Square
-  m_TagString: Untagged
+  m_Name: Ground
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
