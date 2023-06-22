@@ -24,6 +24,7 @@ public class AnimationStage : MonoBehaviour
     void Update()
     {
         Move();
+        Jump();
     }
 
 
