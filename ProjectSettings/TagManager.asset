@@ -45,3 +45,6 @@ TagManager:
   - name: Platform
     uniqueID: 1900332877
     locked: 0
+  - name: Enemy
+    uniqueID: 3107931889
+    locked: 0
