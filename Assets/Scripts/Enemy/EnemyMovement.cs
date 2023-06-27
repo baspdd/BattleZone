@@ -39,9 +39,9 @@ public class EnemyMovement : MonoBehaviour
 
             // Update the target position based on the current direction
             if (isMovingRight)
-                targetX -= 10f; // Move left by 10 units
+                targetX -= 4f; // Move left by 10 units
             else
-                targetX += 10f; // Move right by 10 units
+                targetX += 4f; // Move right by 10 units
 
             isMovingRight = !isMovingRight; // Toggle the direction
         }

@@ -7,7 +7,7 @@ public class AnimationStage : MonoBehaviour
 {
 
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float jumpForce = 1f;
     private float horizontalMove = 0f;
     // Start is called before the first frame update
     private Rigidbody2D rigidbody2D;
