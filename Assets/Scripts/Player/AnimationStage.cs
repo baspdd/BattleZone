@@ -24,7 +24,6 @@ public class AnimationStage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         Movement();
         stageAnimation();
     }
@@ -32,7 +31,6 @@ public class AnimationStage : MonoBehaviour
     private void stageAnimation()
     {
         if (!isGrounded) setStage(2);
-
         else
         {
             setStage(0);
@@ -81,6 +79,13 @@ public class AnimationStage : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            setStage(-1);
+        }
+    }
 
     private void setStage(int stage)
     {
