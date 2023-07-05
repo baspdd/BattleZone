@@ -51,8 +51,8 @@ public class AnimationStage : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal");
         if (horizontalMove != 0)
         {
-            if ((transform.position.x <= -8f && horizontalMove < 0)
-           || (transform.position.x >= 8f && horizontalMove > 0)) return;
+            //     if ((transform.position.x <= -8f && horizontalMove < 0)
+            //    || (transform.position.x >= 8f && horizontalMove > 0)) return;
 
             if (horizontalMove < 0) spriteRenderer.flipX = true;
             else if (horizontalMove > 0) spriteRenderer.flipX = false;
