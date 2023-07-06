@@ -456,7 +456,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4009859daf0df314ca5c31bc8a3cdaed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
+  playerTransform: {fileID: 1886674696}
+  isChasing: 1
+  chaseDistance: 1
 --- !u!61 &1755990120
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -467,7 +470,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -564,7 +567,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755990118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.256, y: 0.4562, z: 0}
+  m_LocalPosition: {x: 1.75, y: -2.53, z: 0}
   m_LocalScale: {x: 4.7675, y: 5.7447, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
