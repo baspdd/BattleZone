@@ -15,7 +15,7 @@ public class Spike_up : MonoBehaviour
         if(other.tag == "Player"){
             var healthComponent = other.GetComponent<PlayerHealth>();
             if(healthComponent !=null){
-                healthComponent.takeDamage(1);
+                healthComponent.TakeDamage(1);
             }
         }
     }

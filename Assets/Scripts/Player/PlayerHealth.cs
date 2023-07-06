@@ -17,10 +17,10 @@ public class PlayerHealth : MonoBehaviour
         playerHealthSlider.value = maxHealth;
     }
 
-    public void takeDamage(int amount){
-        currentHealth -=amount;
+    public void TakeDamage(int damage){
+        currentHealth -=damage;
         playerHealthSlider.value = currentHealth;
-        if(currentHealth<=0){
+        if(currentHealth <= 0){
             return;
         }
     }
