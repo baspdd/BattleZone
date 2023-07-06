@@ -1,24 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 10;
-    public int health;
+    [SerializeField] private Slider playerHealthSlider;
+    [SerializeField] private int maxHealth = 10;
+    [SerializeField] private int currentHealth;
+
     // Start is called before the first frame update
     void Start()
     {
-        health = maxHealth;
+        currentHealth = maxHealth;
+        playerHealthSlider.maxValue = maxHealth;
+        playerHealthSlider.value = maxHealth;
     }
 
-    // Update is called once per frame
-     public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if(health <= 0)
-        {
-            Destroy(gameObject);
+    public void takeDamage(int amount){
+        currentHealth -=amount;
+        playerHealthSlider.value = currentHealth;
+        if(currentHealth<=0){
+            return;
         }
     }
 }
