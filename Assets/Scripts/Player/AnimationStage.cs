@@ -79,14 +79,6 @@ public class AnimationStage : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            setStage(-1);
-        }
-    }
-
     private void setStage(int stage)
     {
         animator.SetInteger("Stage", stage);
