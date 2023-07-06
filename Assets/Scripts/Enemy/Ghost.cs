@@ -11,6 +11,9 @@ public class Ghost : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isMovingRight = true;
     private float targetX;
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private bool isChasing;
+    [SerializeField] private float chaseDistance;
 
     void Start()
     {
@@ -26,24 +29,44 @@ public class Ghost : MonoBehaviour
 
     private void Movement()
     {
-        float step = speed * Time.deltaTime;
-
-        // Move towards the target position
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetX, transform.position.y, transform.position.z), step);
-
-        // Check if the target position is reached
-        if (Mathf.Abs(transform.position.x - targetX) < 0.01f)
+        if (isChasing)
         {
-            // Flip the sprite renderer
-            spriteRenderer.flipX = !isMovingRight;
+            if (transform.position.x > playerTransform.position.x)
+            {
+                spriteRenderer.flipX = false;
+                transform.position += Vector3.left * speed * Time.deltaTime;
+            }
+            if (transform.position.x < playerTransform.position.x)
+            {
+                spriteRenderer.flipX = true;
+                transform.position += Vector3.right * speed * Time.deltaTime;
+            }
+        }
+        else
+        {
+            if(Vector2.Distance(transform.position,playerTransform.position)<chaseDistance)
+            {
+                isChasing = true; 
+            }
+            float step = speed * Time.deltaTime;
 
-            // Update the target position based on the current direction
-            if (isMovingRight)
-                targetX -= 4f; // Move left by 10 units
-            else
-                targetX += 4f; // Move right by 10 units
+            // Move towards the target position
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetX, transform.position.y, transform.position.z), step);
 
-            isMovingRight = !isMovingRight; // Toggle the direction
+            // Check if the target position is reached
+            if (Mathf.Abs(transform.position.x - targetX) < 0.01f)
+            {
+                // Flip the sprite renderer
+                spriteRenderer.flipX = !isMovingRight;
+
+                // Update the target position based on the current direction
+                if (isMovingRight)
+                    targetX -= 4f; // Move left by 10 units
+                else
+                    targetX += 4f; // Move right by 10 units
+
+                isMovingRight = !isMovingRight; // Toggle the direction
+            }
         }
     }
 
