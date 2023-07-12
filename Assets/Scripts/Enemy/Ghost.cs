@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ public class Ghost : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private bool isChasing;
     [SerializeField] private float chaseDistance;
+    [SerializeField] private GameObject enemyDeath;
 
     void Start()
     {
@@ -70,6 +72,17 @@ public class Ghost : MonoBehaviour
         }
     }
 
+    private async void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer is (int)Layer.Fire)
+        {
+            var death = Instantiate(this.enemyDeath);
+            death.transform.localPosition = transform.position;
+            Destroy(this.gameObject);
+            await UniTask.Delay(500);
+            Destroy(death);
+        }
+    }
 
 
 }

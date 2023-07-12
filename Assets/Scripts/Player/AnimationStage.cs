@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AnimationStage : MonoBehaviour
@@ -30,12 +31,10 @@ public class AnimationStage : MonoBehaviour
 
     private void stageAnimation()
     {
-        if (!isGrounded) setStage(2);
-        else
-        {
-            setStage(0);
-            if (horizontalMove != 0 && isGrounded) setStage(1);
-        }
+        if (beAttacked) setStage(3);
+        else if (!isGrounded) setStage(2);
+        else if (horizontalMove != 0 && isGrounded) setStage(1);
+        else setStage(0);
     }
 
     private void Movement()
@@ -49,9 +48,6 @@ public class AnimationStage : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal");
         if (horizontalMove != 0)
         {
-            //     if ((transform.position.x <= -8f && horizontalMove < 0)
-            //    || (transform.position.x >= 8f && horizontalMove > 0)) return;
-
             if (horizontalMove < 0) spriteRenderer.flipX = true;
             else if (horizontalMove > 0) spriteRenderer.flipX = false;
 
@@ -62,21 +58,22 @@ public class AnimationStage : MonoBehaviour
 
 
     private bool isGrounded = false;
+    private bool beAttacked = false;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
+        if (collision.gameObject.CompareTag("Ground")) isGrounded = true;
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy")) beAttacked = true;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy")) beAttacked = false;
+    }
     private void OnCollisionExit2D(Collision2D collision)
     {
-
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
+        if (collision.gameObject.CompareTag("Ground")) isGrounded = false;
     }
 
     private void setStage(int stage)
