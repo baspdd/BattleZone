@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class ObjectPoll : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    async void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -27,6 +28,7 @@ public class ObjectPoll : MonoBehaviour
             {
                 if (!item.gameObject.activeInHierarchy)
                 {
+                    await UniTask.Delay(300);
                     item.gameObject.SetActive(true);
                     break;
                 }
