@@ -10602,26 +10602,17 @@ PrefabInstance:
       objectReference: {fileID: 1916540721}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b55ab7a573d57a74b9736c7e4947554e, type: 3}
---- !u!1 &1916540715 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6357029137224282483, guid: ee5448d249becbc45aaaab82f8397018, type: 3}
+--- !u!114 &1916540721 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1916540721, guid: ee5448d249becbc45aaaab82f8397018, type: 3}
   m_PrefabInstance: {fileID: 6357029136958025280}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1916540721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916540715}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6814b8a724945144a8b96e768d0a5e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealthSlider: {fileID: 1735295053}
-  maxHealth: 10
-  currentHealth: 0
 --- !u!1 &1926384631 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2198250879371308536, guid: b55ab7a573d57a74b9736c7e4947554e, type: 3}
@@ -11470,21 +11461,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1916540721, guid: ee5448d249becbc45aaaab82f8397018, type: 3}
+      propertyPath: playerHealthSlider
+      value: 
+      objectReference: {fileID: 1735295053}
     - target: {fileID: 6357029137224282483, guid: ee5448d249becbc45aaaab82f8397018, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6357029137224282485, guid: ee5448d249becbc45aaaab82f8397018, type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6357029137224282485, guid: ee5448d249becbc45aaaab82f8397018, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6357029137224282485, guid: ee5448d249becbc45aaaab82f8397018, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -2035905655
       objectReference: {fileID: 0}
     - target: {fileID: 6357029137224282486, guid: ee5448d249becbc45aaaab82f8397018, type: 3}
       propertyPath: m_RootOrder
@@ -11529,10 +11512,6 @@ PrefabInstance:
     - target: {fileID: 6357029137224282486, guid: ee5448d249becbc45aaaab82f8397018, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6357029137224282490, guid: ee5448d249becbc45aaaab82f8397018, type: 3}
-      propertyPath: jumpForce
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee5448d249becbc45aaaab82f8397018, type: 3}

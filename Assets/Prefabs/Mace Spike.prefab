@@ -111,4 +111,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b9648a48c24934dbfadc00210b86cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDeath: {fileID: 252096059814448493, guid: b7b24f8d746cf954ea2288c72295e16d, type: 3}
   amplitude: 2
