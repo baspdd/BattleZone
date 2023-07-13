@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemyDamage : MonoBehaviour
 {
     public int damage;
-    public PlayerHealth playerHealth;
+    private PlayerHealth playerHealth => FindObjectOfType<PlayerHealth>();
 
 
     public void OnTriggerEnter2D(Collider2D collision)

@@ -6856,10 +6856,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost
       objectReference: {fileID: 0}
-    - target: {fileID: 3275143371300185024, guid: 3fc931d4c85ac2b4ca8b76cc84991339, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: 3275143371300185025, guid: 3fc931d4c85ac2b4ca8b76cc84991339, type: 3}
       propertyPath: playerTransform
       value: 
@@ -7656,6 +7652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1066570700}
+  - component: {fileID: 1066570701}
   m_Layer: 0
   m_Name: Obstacles
   m_TagString: Untagged
@@ -7710,6 +7707,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1066570701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066570699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50178e468831b604090c32ef1cd47c2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1075558353
 GameObject:
   m_ObjectHideFlags: 0
@@ -11402,11 +11411,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2345071054466071947, guid: da9aac2e65fdacb42907dd94bdc8b112, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.81
+      value: 25.97
       objectReference: {fileID: 0}
     - target: {fileID: 2345071054466071947, guid: da9aac2e65fdacb42907dd94bdc8b112, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2003477
+      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: 2345071054466071947, guid: da9aac2e65fdacb42907dd94bdc8b112, type: 3}
       propertyPath: m_LocalPosition.z

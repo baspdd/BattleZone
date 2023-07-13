@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 6357029137224282486, guid: ee5448d249becbc45aaaab82f8397018, type: 3}
   isChasing: 0
   chaseDistance: 0
   enemyDeath: {fileID: 252096059814448493, guid: b7b24f8d746cf954ea2288c72295e16d, type: 3}
