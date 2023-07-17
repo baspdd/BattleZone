@@ -9,17 +9,19 @@ public class AnimationStage : MonoBehaviour
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 1f;
+    [SerializeField] private float fallMutiplier;
     private float horizontalMove = 0f;
     // Start is called before the first frame update
     private Rigidbody2D rigidbody2D;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    Vector2 vecGravity;
     void Start()
     {
+        vecGravity = new Vector2 (0f, -Physics2D.gravity.y);
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
-
     }
 
     // Update is called once per frame
@@ -45,7 +47,10 @@ public class AnimationStage : MonoBehaviour
         {
             rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
-
+        if (rigidbody2D.velocity.y < 0)
+        {
+            rigidbody2D.velocity -= vecGravity * fallMutiplier * Time.deltaTime;
+        }
         horizontalMove = Input.GetAxisRaw("Horizontal");
         if (horizontalMove != 0)
         {
