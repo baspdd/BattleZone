@@ -6,16 +6,22 @@ using UnityEngine;
 
 public class AnimationStage : MonoBehaviour
 {
-
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float jumpForce = 1f;
+    [Header("JumpSystem")]
+    [SerializeField] float jumpTime;
+    [SerializeField] float jumpMutiplier;
+    [SerializeField] private float jumpPower = 1f;
     [SerializeField] private float fallMutiplier;
+    [SerializeField] private float speed = 5f;
+
     private float horizontalMove = 0f;
     // Start is called before the first frame update
     private Rigidbody2D rigidbody2D;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     Vector2 vecGravity;
+
+    bool isJumping;
+    float jumpCounter;
     void Start()
     {
         vecGravity = new Vector2 (0f, -Physics2D.gravity.y);
@@ -42,15 +48,45 @@ public class AnimationStage : MonoBehaviour
 
     private void Movement()
     {
-        var jumpCheck = Input.GetKeyDown(KeyCode.UpArrow);
-        if (jumpCheck && isGrounded)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
-            rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpPower);
+            isJumping = true;
+            jumpCounter = 0;
         }
+
+        if(rigidbody2D.velocity.y>0 && isJumping)
+        {
+            jumpCounter += Time.deltaTime;
+            if(jumpCounter > jumpTime) isJumping = false;
+
+            float t= jumpCounter / jumpTime;
+            float currentJumpMuti = jumpMutiplier;
+
+            if(t > 0.5f)
+            {
+                currentJumpMuti = currentJumpMuti * (1 - t);
+            }
+            
+            rigidbody2D.velocity += vecGravity * currentJumpMuti * Time.deltaTime;
+        }
+
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            isJumping = false;
+            jumpCounter = 0;
+
+            if(rigidbody2D.velocity.y>0)
+            {
+                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y * 0.6f);
+            }
+        }
+
         if (rigidbody2D.velocity.y < 0)
         {
             rigidbody2D.velocity -= vecGravity * fallMutiplier * Time.deltaTime;
         }
+
         horizontalMove = Input.GetAxisRaw("Horizontal");
         if (horizontalMove != 0)
         {
