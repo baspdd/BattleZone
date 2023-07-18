@@ -8,6 +8,7 @@ public class ObjectPoll : MonoBehaviour
 
     [SerializeField] private GameObject prefabs;
     [SerializeField] private int quantity;
+    [SerializeField] private AudioSource shootSE;
     private List<GameObject> pool = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class ObjectPoll : MonoBehaviour
                 if (!item.gameObject.activeInHierarchy)
                 {
                     await UniTask.Delay(300);
+                    shootSE.Play();
                     item.gameObject.SetActive(true);
                     break;
                 }
