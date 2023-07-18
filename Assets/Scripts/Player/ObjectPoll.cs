@@ -10,6 +10,9 @@ public class ObjectPoll : MonoBehaviour
     [SerializeField] private int quantity;
     [SerializeField] private AudioSource shootSE;
     private List<GameObject> pool = new List<GameObject>();
+    private AnimationStage animate => FindObjectOfType<AnimationStage>();
+    private float cooldown = 0.8f;
+    private float lastShootTime = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,19 +24,30 @@ public class ObjectPoll : MonoBehaviour
     }
 
     // Update is called once per frame
-    async void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && CanShoot())
         {
-            foreach (var item in pool)
+            animate.setStage(4);
+            Shoot();
+            lastShootTime = Time.time;
+        }
+    }
+
+    private bool CanShoot()
+    {
+        return Time.time - lastShootTime >= cooldown;
+    }
+
+    private void Shoot()
+    {
+        foreach (GameObject obj in pool)
+        {
+            if (!obj.activeInHierarchy)
             {
-                if (!item.gameObject.activeInHierarchy)
-                {
-                    await UniTask.Delay(300);
-                    shootSE.Play();
-                    item.gameObject.SetActive(true);
-                    break;
-                }
+                shootSE.Play();
+                obj.SetActive(true);
+                break;
             }
         }
     }

@@ -5,7 +5,7 @@ using System;
 
 public class Fire : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float speed = 3;
     private void OnEnable()
     {
         var player = FindObjectOfType<PlayerHealth>().gameObject;

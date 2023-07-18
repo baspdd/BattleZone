@@ -38,9 +38,8 @@ public class AnimationStage : MonoBehaviour
     }
 
     private void stageAnimation()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)) setStage(4); 
-        else if (beAttacked) setStage(3);
+    { 
+        if (beAttacked) setStage(3);
         else if (!isGrounded) setStage(2);
         else if (horizontalMove != 0 && isGrounded) setStage(1);
         else setStage(0);
@@ -118,7 +117,7 @@ public class AnimationStage : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground")) isGrounded = false;
     }
 
-    private void setStage(int stage)
+    public void setStage(int stage)
     {
         animator.SetInteger("Stage", stage);
     }
