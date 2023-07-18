@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class AnimationStage : MonoBehaviour
 {
-
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 1f;
     private float horizontalMove = 0f;
@@ -19,7 +18,6 @@ public class AnimationStage : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
-
     }
 
     // Update is called once per frame
@@ -31,7 +29,7 @@ public class AnimationStage : MonoBehaviour
 
     private void stageAnimation()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) setStage(4); 
+        if (Input.GetKeyDown(KeyCode.Space)) setStage(4);
         else if (beAttacked) setStage(3);
         else if (!isGrounded) setStage(2);
         else if (horizontalMove != 0 && isGrounded) setStage(1);

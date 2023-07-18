@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private Slider playerHealthSlider;
     [SerializeField] private int maxHealth = 10;
     [SerializeField] private int currentHealth;
-
+    public static bool isDead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +20,17 @@ public class PlayerHealth : MonoBehaviour
         playerHealthSlider.value = maxHealth;
     }
 
-    public void TakeDamage(int damage){
-        currentHealth -=damage;
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
         playerHealthSlider.value = currentHealth;
-        if(currentHealth <= 0){
+        isDead = currentHealth <= 0;
+        if (isDead)
+        {
+            if (audioSource && deathSound)
+            {
+                audioSource.PlayOneShot(deathSound);
+            }
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
